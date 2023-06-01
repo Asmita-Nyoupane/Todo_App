@@ -1,0 +1,71 @@
+//   function saveLocalTodos(todo){
+//    // check if local storage already have value
+//    let todos;
+//    if(localStorage.getItem('todos')==null){
+//       todos=[];
+//    }
+//    else{
+//       todos=JSON.parse(localStorage.getItem('todos'));
+//    }
+//    todos.push(todo);
+//    localStorage.setItem('todos',JSON.stringify(todos));
+//   }
+
+//   // add eventlistener
+//   document.addEventListener('DOMContentLoaded',getTodos);
+
+//   function getTodos(){
+//    // check if local storage already have value
+//    let todos;
+//    if(localStorage.getItem('todos')==null){
+//       todos=[];
+//    }
+//    else{
+//       todos=JSON.parse(localStorage.getItem('todos'));
+//    }
+
+//    todos.forEach(function(todo)
+//    {
+      
+//       let todoDiv = document.createElement("div");
+//       todoDiv.classList.add("todo");
+
+//       //create a list
+//       let newTodo = document.createElement("li");
+//       newTodo.innerText=todo;
+//       newTodo.classList.add("todo-item");
+//       todoDiv.appendChild(newTodo);
+
+//       //creating checked button
+//       let checkedBtn = document.createElement("button");
+//       checkedBtn.innerHTML = '<i class="fa fa-check-circle"></i>';
+//       checkedBtn.classList.add("checked");
+//       todoDiv.appendChild(checkedBtn);
+
+//       //creating a delete button
+//       let deleteBtn = document.createElement("button");
+//       deleteBtn.innerHTML = '<i class="fa fa-trash-o"></i>';
+//       deleteBtn.classList.add("delete");
+//       todoDiv.appendChild(deleteBtn);
+
+//       //append to list
+//       todoList.appendChild(todoDiv);
+
+//    });
+//   }
+//   function removeLocalTodos(todo){
+//    // check if local storage already have value
+//    let todos;
+//    if(localStorage.getItem('todos')==null){
+//       todos=[];
+//    }
+//    else{
+//       todos=JSON.parse(localStorage.getItem('todos'));
+//    }
+   
+//    localStorage.setItem('todos',JSON.stringify(todos));
+//    let todoIndex=todo.children[0].innerText;
+//    //splice remove the item  
+//    todos.splice(todos.indexOf(todoIndex),1);
+//    localStorage.setItem("todos",JSON.stringify(todos));
+//   }

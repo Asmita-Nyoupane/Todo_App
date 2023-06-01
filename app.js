@@ -1,8 +1,10 @@
 let inputText = document.querySelector(".inputText");
 let date=document.querySelector(".date");
+let clear=document.querySelector(".clearPage")
 let submitBtn = document.querySelector(".submitBtn");
 let todoList = document.querySelector(".todo-list");
 let filter=document.querySelector(".filter");
+
 //adding today date in TODO App
 const options={weekday:"long",month:"short",day:"numeric"}
 const today=new Date();
@@ -23,8 +25,8 @@ date.innerHTML=today.toLocaleDateString("en-US",options)
       newTodo.innerText = inputText.value;
       newTodo.classList.add("todo-item");
       todoDiv.appendChild(newTodo);
-      //add Todo to local storage
-      saveLocalTodos(inputText.value);
+
+      saveLocalTodos(newTodo.innerText);
 
       //creating checked button
       let checkedBtn = document.createElement("button");
@@ -42,9 +44,13 @@ date.innerHTML=today.toLocaleDateString("en-US",options)
       todoList.appendChild(todoDiv);
       //clear the input
       inputText.value = "";
+      
+      
+      
+    
+     
     }
   });
-
 
   todoList.addEventListener("click", (e) => {
     let item = e.target;
@@ -52,12 +58,15 @@ date.innerHTML=today.toLocaleDateString("en-US",options)
     if (item.classList && item.classList[0] === "checked") {
       let todo = item.parentElement;
       todo.classList.toggle("completed");
+     
+      
     }
     //delete the item
     if (item.classList && item.classList[0] === "delete") {
       let todo = item.parentElement;
       removeLocalTodos(todo);
-     todo.remove();
+      todo.remove();
+    
       
     }
   });
@@ -113,60 +122,71 @@ date.innerHTML=today.toLocaleDateString("en-US",options)
   // add eventlistener
   document.addEventListener('DOMContentLoaded',getTodos);
 
-  function getTodos(){
-   // check if local storage already have value
-   let todos;
-   if(localStorage.getItem('todos')==null){
-      todos=[];
-   }
-   else{
-      todos=JSON.parse(localStorage.getItem('todos'));
-   }
 
-   todos.forEach(function(todo)
-   {
+ 
+   function getTodos(){
+         // check if local storage already have value
+         let todos;
+         if(localStorage.getItem('todos')==null){
+            todos=[];
+         }
+         else{
+            todos=JSON.parse(localStorage.getItem('todos'));
+         }
       
-      let todoDiv = document.createElement("div");
-      todoDiv.classList.add("todo");
-
-      //create a list
-      let newTodo = document.createElement("li");
-      newTodo.innerText=todo;
-      newTodo.classList.add("todo-item");
-      todoDiv.appendChild(newTodo);
-
-      //creating checked button
-      let checkedBtn = document.createElement("button");
-      checkedBtn.innerHTML = '<i class="fa fa-check-circle"></i>';
-      checkedBtn.classList.add("checked");
-      todoDiv.appendChild(checkedBtn);
-
-      //creating a delete button
-      let deleteBtn = document.createElement("button");
-      deleteBtn.innerHTML = '<i class="fa fa-trash-o"></i>';
-      deleteBtn.classList.add("delete");
-      todoDiv.appendChild(deleteBtn);
-
-      //append to list
-      todoList.appendChild(todoDiv);
-
+         todos.forEach(function(todo)
+         {
+            
+            let todoDiv = document.createElement("div");
+            todoDiv.classList.add("todo");
+      
+            //create a list
+            let newTodo = document.createElement("li");
+            newTodo.innerText=todo;
+            newTodo.classList.add("todo-item");
+            todoDiv.appendChild(newTodo);
+      
+            //creating checked button
+            let checkedBtn = document.createElement("button");
+            checkedBtn.innerHTML = '<i class="fa fa-check-circle"></i>';
+            checkedBtn.classList.add("checked");
+            todoDiv.appendChild(checkedBtn);
+      
+            //creating a delete button
+            let deleteBtn = document.createElement("button");
+            deleteBtn.innerHTML = '<i class="fa fa-trash-o"></i>';
+            deleteBtn.classList.add("delete");
+            todoDiv.appendChild(deleteBtn);
+      
+            //append to list
+            todoList.appendChild(todoDiv);
+            
+      
    });
+   }
+  
 
-  }
+ 
   function removeLocalTodos(todo){
-   // check if local storage already have value
-   let todos;
-   if(localStorage.getItem('todos')==null){
-      todos=[];
-   }
-   else{
-      todos=JSON.parse(localStorage.getItem('todos'));
-   }
-   
-   localStorage.setItem('todos',JSON.stringify(todos));
-   let todoIndex=todo.children[0].innerText;
-   //splice remove the item  
-   todos.splice(todos.indexOf(todoIndex),1);
-   localStorage.setItem("todos",JSON.stringify(todos));
+      // check if local storage already have value
+      let todos;
+      if(localStorage.getItem('todos')==null){
+         todos=[];
+         localStorage.setItem('todos',JSON.stringify(todos));
+      let todoIndex=todo.children[0].innerText;
+      //splice remove the item  
+      todos.splice(todos.indexOf(todoIndex),1);
+      localStorage.setItem("todos",JSON.stringify(todos));
+      }
+      else{
+         todos=JSON.parse(localStorage.getItem('todos'));
+      }
+      
+      
+     }
 
-  }
+  //clear all the todo items
+  clear.addEventListener("click",()=>{
+   window.localStorage.clear();
+   location.reload();
+  });
