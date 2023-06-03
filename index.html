@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todo_List</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>
+             My Todo List
+        </h1>
+    </header>
+   <div class="box">
+    <span class="date"> </span>
+    <span class="clearPage">
+        <i class="fa fa-refresh"></i>
+    </span>
+   </div>
+    <form name="todoApp">
+        <input type="text" class="inputText">
+        <button type="submit" class="submitBtn">Add</button>
+        <div class="select">
+            <select name="todos" class="filter">
+                <option value="all">All</option>
+                <option value="complete">Completed</option>
+                <option value="incomplete">Incomplete</option>
+            </select>
+        </div>
+    </form>
+    <div class="todo-container">
+        <ul class="todo-list">
+            </div>
+        </ul>
+    </div>
+    <script src="./script.js"></script>
+</body>
+</html>
